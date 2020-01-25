@@ -1,6 +1,6 @@
 {
   "name": "psx/cloudevents",
-  "description": "Handle cloud events",
+  "description": "Produce and consume cloud events",
   "keywords": ["cloud", "events", "cloudevents"],
   "homepage": "http://phpsx.org",
   "license": "Apache-2.0",
