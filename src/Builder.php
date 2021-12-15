@@ -29,100 +29,61 @@ namespace PSX\CloudEvents;
  */
 class Builder
 {
-    /**
-     * @var \PSX\CloudEvents\CloudEvent
-     */
-    private $event;
+    private CloudEvent $event;
 
     public function __construct()
     {
         $this->event = new CloudEvent();
     }
 
-    /**
-     * @param string $type
-     * @return $this
-     */
     public function withType(string $type): self
     {
         $this->event->setType($type);
         return $this;
     }
 
-    /**
-     * @param string $source
-     * @return $this
-     */
     public function withSource(string $source): self
     {
         $this->event->setSource($source);
         return $this;
     }
 
-    /**
-     * @param string $id
-     * @return $this
-     */
     public function withId(string $id): self
     {
         $this->event->setId($id);
         return $this;
     }
 
-    /**
-     * @param \DateTimeInterface $time
-     * @return $this
-     */
     public function withTime(\DateTimeInterface $time): self
     {
         $this->event->setTime($time);
         return $this;
     }
 
-    /**
-     * @param string $contentType
-     * @return $this
-     */
     public function withDataContentType(string $contentType): self
     {
         $this->event->setDataContentType($contentType);
         return $this;
     }
 
-    /**
-     * @param mixed $data
-     * @return $this
-     */
     public function withData($data): self
     {
         $this->event->setData($data);
         return $this;
     }
 
-    /**
-     * @param array $extensions
-     * @return $this
-     */
     public function withExtensions(array $extensions): self
     {
         $this->event->setExtensions($extensions);
         return $this;
     }
 
-    /**
-     * @param string $name
-     * @param mixed $value
-     * @return $this
-     */
-    public function withExtension(string $name, $value): self
+    public function withExtension(string $name, mixed $value): self
     {
         $this->event->addExtension($name, $value);
         return $this;
     }
 
-    /**
-     * @return \PSX\CloudEvents\CloudEvent
-     */
     public function build(): CloudEvent
     {
         return clone $this->event;

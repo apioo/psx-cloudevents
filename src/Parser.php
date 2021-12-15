@@ -40,11 +40,7 @@ class Parser
         'data_base64' => 'setDataBase64',
     ];
 
-    /**
-     * @param array|\stdClass $data
-     * @return CloudEvent
-     */
-    public static function parse($data): CloudEvent
+    public static function parse(array|\stdClass $data): CloudEvent
     {
         $event = new CloudEvent();
 

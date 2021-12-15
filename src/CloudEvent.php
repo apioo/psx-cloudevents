@@ -29,205 +29,112 @@ namespace PSX\CloudEvents;
  */
 class CloudEvent implements \JsonSerializable
 {
-    /**
-     * @var string
-     */
-    protected $specVersion;
-
-    /**
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * @var string
-     */
-    protected $source;
-
-    /**
-     * @var string
-     */
-    protected $id;
-
-    /**
-     * @var \DateTime
-     */
-    protected $time;
-
-    /**
-     * @var string
-     */
-    protected $dataContentType;
-
-    /**
-     * @var mixed
-     */
-    protected $data;
-
-    /**
-     * @var mixed
-     */
-    protected $dataBase64;
-
-    /**
-     * @var array
-     */
-    protected $extensions;
+    private string $specVersion;
+    private ?string $type = null;
+    private ?string $source = null;
+    private ?string $id = null;
+    private ?\DateTimeInterface $time = null;
+    private ?string $dataContentType = null;
+    private mixed $data = null;
+    private ?string $dataBase64 = null;
+    private ?array $extensions = null;
 
     public function __construct()
     {
         $this->specVersion = '1.0';
     }
 
-    /**
-     * @return string
-     */
     public function getSpecVersion(): ?string
     {
         return $this->specVersion;
     }
 
-    /**
-     * @param string $specVersion
-     */
     public function setSpecVersion(string $specVersion): void
     {
         $this->specVersion = $specVersion;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     */
     public function setType(string $type): void
     {
         $this->type = $type;
     }
 
-    /**
-     * @return string
-     */
     public function getSource(): ?string
     {
         return $this->source;
     }
 
-    /**
-     * @param string $source
-     */
     public function setSource(string $source): void
     {
         $this->source = $source;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * @param string $id
-     */
     public function setId(string $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getTime(): ?\DateTimeInterface
     {
         return $this->time;
     }
 
-    /**
-     * @param \DateTimeInterface $time
-     */
     public function setTime(\DateTimeInterface $time): void
     {
         $this->time = $time;
     }
 
-    /**
-     * @return string
-     */
     public function getDataContentType(): ?string
     {
         return $this->dataContentType;
     }
 
-    /**
-     * @param string $dataContentType
-     */
     public function setDataContentType(string $dataContentType): void
     {
         $this->dataContentType = $dataContentType;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getData()
+    public function getData(): mixed
     {
         return $this->data;
     }
 
-    /**
-     * @param mixed $data
-     */
-    public function setData($data): void
+    public function setData(mixed $data): void
     {
         $this->data = $data;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDataBase64()
+    public function getDataBase64(): ?string
     {
         return $this->dataBase64;
     }
 
-    /**
-     * @param mixed $dataBase64
-     */
-    public function setDataBase64($dataBase64): void
+    public function setDataBase64(string $dataBase64): void
     {
         $this->dataBase64 = $dataBase64;
     }
 
-    /**
-     * @return array
-     */
-    public function getExtensions(): array
+    public function getExtensions(): ?array
     {
         return $this->extensions;
     }
 
-    /**
-     * @param array $extensions
-     */
     public function setExtensions(array $extensions): void
     {
         $this->extensions = $extensions;
     }
 
-    /**
-     * @param string $name
-     * @param mixed $value
-     */
-    public function addExtension(string $name, $value)
+    public function addExtension(string $name, mixed $value)
     {
         if (!isset($this->extensions)) {
             $this->extensions = [];
@@ -236,11 +143,7 @@ class CloudEvent implements \JsonSerializable
         $this->extensions[$name] = $value;
     }
 
-    /**
-     * @param string $name
-     * @return mixed|null
-     */
-    public function getExtension(string $name)
+    public function getExtension(string $name): mixed
     {
         return $this->extensions[$name] ?? null;
     }
