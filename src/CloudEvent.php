@@ -148,9 +148,9 @@ class CloudEvent implements \JsonSerializable
         return $this->extensions[$name] ?? null;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): object
     {
-        return array_filter(array_merge([
+        return (object) array_filter(array_merge([
             'specversion' => $this->specVersion,
             'type' => $this->type,
             'source' => $this->source,
